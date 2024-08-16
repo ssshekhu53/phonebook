@@ -1,8 +1,7 @@
 class Phonebook:
-    @classmethod
-    def New(cls, firstname, lastname, phone):
-        cls.FirstName = firstname
-        cls.LastName = lastname
-        cls.Phone = phone
+    def __init__(self, firstname, lastname, phone):
+        self.FirstName = firstname
+        self.LastName = lastname
+        self.Phone = phone
 
 

@@ -1,29 +1,34 @@
-from model import Phonebook as modelPhonebook
-from constants import FIRSTNAME, LASTNAME, PHONE
+from model.phonebook import Phonebook as modelPhonebook
+from constants.constants import FIRSTNAME, LASTNAME, PHONE
 
 class Phonebook:
-    def New(self):
-        self.Directory = {}
+    def __init__(self):
+        self.directory = {}
 
     def Register(self, firstName, lastName, phone):
-        self.Directory[firstName] = modelPhonebook.New(firstName, lastName, phone)
+        self.directory[firstName] = modelPhonebook(firstName, lastName, phone)
+
+    def GetByFirstName(self, firstName):
+        return self.directory.get(firstName)
 
     def Search(self, searchKey, searchValue):
         if searchKey == FIRSTNAME:
             return self.searchByFirstName(searchValue)
         elif searchKey == LASTNAME:
-            return
+            return self.searchByLastName(searchValue)
+        elif searchKey == PHONE:
+            return self.searchByPhone(searchValue)
 
     def Update(self, firstName, phonebook):
-        self.Directory[firstName] = phonebook
+        self.directory[firstName] = phonebook
 
     def Delete(self, firstName):
-        del(self.Directory[firstName])
+        del(self.directory[firstName])
 
     def searchByFirstName(self, firstName):
         users = []
 
-        for value in self.Directory.values():
+        for value in self.directory.values():
             if value.FirstName.startswith(firstName):
                 users.append(value.FirstName)
         
@@ -32,7 +37,7 @@ class Phonebook:
     def searchByLastName(self, lastName):
         users = []
 
-        for value in self.Directory.values():
+        for value in self.directory.values():
             if value.LastName.startswith(lastName):
                 users.append(value.FirstName)
         
@@ -41,7 +46,7 @@ class Phonebook:
     def searchByPhone(self, phone):
         users = []
 
-        for value in self.Directory.values():
+        for value in self.directory.values():
             if value.Phone.startswith(phone):
                 users.append(value.FirstName)
         
