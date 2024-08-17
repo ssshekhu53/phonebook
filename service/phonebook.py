@@ -17,22 +17,24 @@ class Phonebook:
         
         self.store.Register(firstName, lastName, phone)
 
-    def Search(self, searchKey, searchValue):
-        return self.store.Search(searchKey, searchValue)
+    def Search(self, searchKey, searchPhrase):
+        return self.store.Search(searchKey, searchPhrase)
 
     def Update(self, firstname, updateKey, updateValue):
-        user = self.Store.GetByFirstName(firstname)
+        user = self.store.GetByFirstName(firstname)
 
         if user == None:
             raise DoesNotExists
         
         if updateKey == LASTNAME:
-            self.store.Upate(user.FirstName, updateValue, user.Phone)
+            user.LastName = updateValue
         elif updateKey == PHONE:
-            self.store.Upate(user.FirstName, user.LastName, updateValue)
+            user.Phone = updateValue
+
+        self.store.Update(user.FirstName, user)
 
     def Delete(self, firstname):
-        user = self.Store.GetByFirstName(firstname)
+        user = self.store.GetByFirstName(firstname)
 
         if user == None:
             raise DoesNotExists

@@ -11,13 +11,13 @@ class Phonebook:
     def GetByFirstName(self, firstName):
         return self.directory.get(firstName)
 
-    def Search(self, searchKey, searchValue):
+    def Search(self, searchKey, searchPhrase):
         if searchKey == FIRSTNAME:
-            return self.searchByFirstName(searchValue)
+            return self.searchByFirstName(searchPhrase)
         elif searchKey == LASTNAME:
-            return self.searchByLastName(searchValue)
+            return self.searchByLastName(searchPhrase)
         elif searchKey == PHONE:
-            return self.searchByPhone(searchValue)
+            return self.searchByPhone(searchPhrase)
 
     def Update(self, firstName, phonebook):
         self.directory[firstName] = phonebook

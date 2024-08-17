@@ -24,3 +24,10 @@ class DoesNotExists(Exception):
     def __str__(self):
         return f"{self.entity} does not exists"
     
+class InvalidCommandParams(Exception):
+    def __init__(self, requiredParams):
+        self.requiredParams = requiredParams
+
+    def __str__(self):
+        return f"invalid command, required parameters {self.requiredParams}"
+    
